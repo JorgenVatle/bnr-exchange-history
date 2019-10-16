@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/JorgenVatle/bnr-exchange-history/issues"
   },
-  "homepage": "https://github.com/JorgenVatle/bnr-exchange-history#readme"
+  "homepage": "https://github.com/JorgenVatle/bnr-exchange-history#readme",
+  "devDependencies": {
+    "typescript": "^3.6.4"
+  }
 }
