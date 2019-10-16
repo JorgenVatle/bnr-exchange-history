@@ -33,3 +33,10 @@ BNR.fetchRates({ date: new Date('Jan 1, 2019') }).then((rates) => {
     //}
 });
 ```
+
+## Notes
+As BNR does not post exchange rates for non-banking days, requests for a non-banking day will automatically fall back to
+the most recent previous banking day for exchange rates.
+
+This happens on dates like January 1 and 2 of 2019. So a request for Jan 2, 2019 will output exchange rates for
+Dec 31, 2018 which is the most recent past update for the requested date.
