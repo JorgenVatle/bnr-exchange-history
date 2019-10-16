@@ -55,6 +55,10 @@ multiplier of 100, should be rounded off to the closest whole number.
 E.g. If the exchange rate for JPY is 3.7008, a conversion from 150 RON to JPY would be `(150 / 3.7008) * 100`. As the
 currency does not support decimals, you'll probably want to round it off. `Math.round((150 / 3.7008) * 100)`
 
+### Alternatives
+If all you need is to fetch exchange rates for the _current day_, you'll probably be better off with Bloggify's
+[node-bnr](https://github.com/Bloggify/node-bnr) package.
+
 ## License
 This repository is licensed under the ISC license.
 
