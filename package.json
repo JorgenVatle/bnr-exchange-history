@@ -23,6 +23,11 @@
   },
   "homepage": "https://github.com/JorgenVatle/bnr-exchange-history#readme",
   "devDependencies": {
+    "@types/got": "^9.6.7",
     "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "got": "^9.6.0",
+    "moment": "^2.24.0"
   }
 }
