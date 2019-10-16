@@ -1,4 +1,13 @@
+import Axios from 'axios';
+
 export default new class BNRExchangeHistory {
+
+    /**
+     * API Client.
+     */
+    protected readonly API = Axios.create({
+        baseURL: 'https://www.bnr.ro/files/xml/years/',
+    });
 
     /**
      * Date to fetch exchange rates for.
