@@ -1,0 +1,25 @@
+{
+  "name": "bnr-exchange-history",
+  "version": "1.0.0",
+  "description": "A wrapper for bnr.ro's exchange rate pages. With support for yearly rates.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgenVatle/bnr-exchange-history.git"
+  },
+  "keywords": [
+    "bnr.ro",
+    "exchange-rates",
+    "currency-conversion",
+    "exchange-history"
+  ],
+  "author": "Jørgen <Jorgen@WcAServices.net> (https://github.com/JorgenVatle)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JorgenVatle/bnr-exchange-history/issues"
+  },
+  "homepage": "https://github.com/JorgenVatle/bnr-exchange-history#readme"
+}
