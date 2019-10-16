@@ -11,10 +11,17 @@ other than 'today'. This package aims to resolve that, allowing lookups for any 
 npm install bnr-exchange-history
 ```
 
-## Usage
+## Importing
 ```typescript
+// ES Modules
 import BNR from 'bnr-exchange-history';
 
+// ... or CommonJS
+const BNR = require('bnr-exchange-history').default;
+```
+
+## Usage
+```typescript
 // Exchange rates for today.
 BNR.fetchRates().then((rates) => {
     console.log(rates) // { 
