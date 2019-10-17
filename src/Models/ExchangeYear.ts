@@ -39,13 +39,6 @@ export default class ExchangeYear {
     }
 
     /**
-     * Whether or not there are exchange rates for the given date in this year.
-     */
-    public hasDay(date: Date) {
-        return !!this.getDay(date);
-    }
-
-    /**
      * Whether or not the given date is within the same year as the current exchange year document.
      */
     public sameYear(date: Date) {
