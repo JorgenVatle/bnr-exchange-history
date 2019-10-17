@@ -17,6 +17,9 @@
     "currency-conversion",
     "exchange-history"
   ],
+  "files": [
+    "dist"
+  ],
   "author": "Jørgen <Jorgen@WcAServices.net> (https://github.com/JorgenVatle)",
   "license": "ISC",
   "bugs": {
