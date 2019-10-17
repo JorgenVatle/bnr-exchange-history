@@ -1,6 +1,6 @@
 import { CurrencyCode } from './ExchangeInterface';
 
-interface ExchangeCube {
+export interface ExchangeCube {
     $: {
         date: string;
     },
