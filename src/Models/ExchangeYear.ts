@@ -23,6 +23,13 @@ export default class ExchangeYear {
     }
 
     /**
+     * Year of the current exchange rate document.
+     */
+    protected get year() {
+        return this.days[0].date.getFullYear();
+    }
+
+    /**
      * Fetch exchange rates for the given date.
      */
     public getDay(date: Date) {
@@ -36,6 +43,13 @@ export default class ExchangeYear {
      */
     public hasDay(date: Date) {
         return !!this.getDay(date);
+    }
+
+    /**
+     * Whether or not the given date is within the same year as the current exchange year document.
+     */
+    public sameYear(date: Date) {
+        return date.getFullYear() === this.year;
     }
 
 }
