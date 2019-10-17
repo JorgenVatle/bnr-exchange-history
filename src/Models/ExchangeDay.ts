@@ -32,4 +32,11 @@ export default class ExchangeDay {
         return <ExchangeInterface>result;
     }
 
+    /**
+     * Exchange date.
+     */
+    protected get date(): Date {
+        return new Date(this.data.$.date);
+    }
+
 }
