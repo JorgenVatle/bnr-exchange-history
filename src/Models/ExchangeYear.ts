@@ -1,5 +1,6 @@
 import ExchangeYearDocument from '../Interfaces/ExchangeYearDocument';
 import ExchangeDay from './ExchangeDay';
+import Moment from 'moment';
 
 export default class ExchangeYear {
 
@@ -22,5 +23,13 @@ export default class ExchangeYear {
         return this.data.DataSet.Body[0].Cube.map((cube) => new ExchangeDay(cube));
     }
 
+    /**
+     * Fetch exchange rates for the given date.
+     */
+    public getDay(date: Date) {
+        return this.days.find((exchange) => {
+            return Moment(exchange.date).dayOfYear() === Moment(date).dayOfYear();
+        });
+    }
 
 }
