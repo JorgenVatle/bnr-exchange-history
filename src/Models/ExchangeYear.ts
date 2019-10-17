@@ -1,6 +1,5 @@
 import ExchangeYearDocument from '../Interfaces/ExchangeYearDocument';
 import ExchangeDay from './ExchangeDay';
-import Moment from 'moment';
 
 export default class ExchangeYear {
 
@@ -28,7 +27,7 @@ export default class ExchangeYear {
      */
     public getDay(date: Date) {
         return this.days.find((exchange) => {
-            return Moment(exchange.date).dayOfYear() === Moment(date).dayOfYear();
+            return exchange.date.toDateString() === date.toDateString();
         });
     }
 
