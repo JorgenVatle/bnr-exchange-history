@@ -36,7 +36,7 @@ export default new class BNRExchangeHistory {
         let year = await this.getYear(moment.toDate());
 
         for (let i = 0; i < 25; i++) {
-            Moment().subtract(i, 'days');
+            moment.subtract(i, 'days');
             const day = year.getDay(moment.toDate());
 
             if (day) {
