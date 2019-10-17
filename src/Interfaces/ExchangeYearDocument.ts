@@ -7,7 +7,7 @@ export interface ExchangeCube {
     Rate: Array<{
         $: {
             currency: CurrencyCode;
-            multiplier: '1' | '100';
+            multiplier?: '1' | '100';
         }
         _: string; // Exchange rate.
     }>
