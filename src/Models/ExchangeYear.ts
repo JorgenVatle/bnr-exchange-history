@@ -31,4 +31,11 @@ export default class ExchangeYear {
         });
     }
 
+    /**
+     * Whether or not there are exchange rates for the given date in this year.
+     */
+    public hasDay(date: Date) {
+        return !!this.getDay(date);
+    }
+
 }
