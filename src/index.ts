@@ -1,4 +1,6 @@
 import Axios from 'axios';
+import { parseStringPromise as ParseXML } from 'xml2js';
+import ExchangeYear from './Models/ExchangeYear';
 
 export default new class BNRExchangeHistory {
 
@@ -19,6 +21,15 @@ export default new class BNRExchangeHistory {
      */
     private setDate(date: Date) {
         this.date = date;
+    }
+
+    /**
+     * Get exchange rates for the given year.
+     */
+    protected getYear(date: Date = this.date): Promise<ExchangeYear> {
+        return this.API.get(`nbrfxrates${this.date.getFullYear()}.xml`).then(async (response) => {
+            return new ExchangeYear(await ParseXML(response.data));
+        })
     }
 
     /**
