@@ -32,7 +32,7 @@ BNR.fetchRates().then((rates) => {
 });
 
 // Exchange rates for January 1st, 2019
-BNR.fetchRates({ date: new Date('Jan 1, 2019') }).then((rates) => {
+BNR.fetchRates(new Date('Jan 1, 2019')).then((rates) => {
     console.log(rates) // { 
     // EUR: { rate: 4.6639, multiplier: 1 },
     // USD: { rate: 4.0736, multiplier: 1, },
