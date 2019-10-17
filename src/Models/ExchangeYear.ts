@@ -8,7 +8,6 @@ export default class ExchangeYear {
     protected readonly data: ExchangeYearDocument;
 
     /**
-    /**
      * Exchange Year document.
      */
     public constructor(data: ExchangeYearDocument) {
