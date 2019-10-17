@@ -5,7 +5,10 @@
   "main": "dist/index.js",
   "types": "dist/BNRExchangeHistory.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepack": "npm run build",
+    "postpublish": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
