@@ -35,7 +35,7 @@ export default class ExchangeDay {
     /**
      * Exchange date.
      */
-    protected get date(): Date {
+    public get date(): Date {
         return new Date(this.data.$.date);
     }
 
