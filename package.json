@@ -2,7 +2,7 @@
   "name": "bnr-exchange-history",
   "version": "2.0.2",
   "description": "A wrapper for bnr.ro's exchange rate pages. With support for yearly rates.",
-  "main": "dist/index.js",
+  "main": "dist/BNRExchangeHistory.js",
   "types": "dist/BNRExchangeHistory.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
