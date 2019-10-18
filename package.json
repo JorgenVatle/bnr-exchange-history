@@ -10,6 +10,9 @@
     "prepack": "npm run build",
     "postpublish": "git push && git push --tags"
   },
+  "engines": {
+    "node": ">=6.4"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JorgenVatle/bnr-exchange-history.git"
