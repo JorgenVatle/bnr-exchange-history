@@ -6,6 +6,10 @@ packages with support for [bnr.ro](https://bnr.ro/), all of these lack support f
 other than 'today'. This package aims to resolve that, allowing lookups for any date between January 3rd, 2005 and
 'today'. 
 
+[![Downloads](https://img.shields.io/npm/dt/bnr-exchange-history.svg)](https://www.npmjs.com/package/bnr-exchange-history)
+[![Version](https://img.shields.io/npm/v/bnr-exchange-history.svg)](https://www.npmjs.com/package/bnr-exchange-history)
+[![Node Version](https://img.shields.io/node/v/bnr-exchange-history.svg)](https://www.npmjs.com/package/bnr-exchange-history)
+
 ## Installation
 ```bash
 npm install bnr-exchange-history
