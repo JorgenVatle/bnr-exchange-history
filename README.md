@@ -32,10 +32,21 @@ BNR.fetchRates().then((rates) => {
 });
 
 // Exchange rates for January 1st, 2019
-BNR.fetchRates(new Date('Jan 1, 2019')).then((rates) => {
+BNR.fetchRates({ date: new Date('Jan 1, 2019') }).then((rates) => {
     console.log(rates) // { 
     // EUR: { rate: 4.6639, multiplier: 1 },
     // USD: { rate: 4.0736, multiplier: 1, },
+    // ...
+    //}
+});
+
+// Fetch exchange rates for an invoicing date. 
+// Especially useful as invoices should include exchange rates for the previous day when issuing
+// invoices in currencies other than RON.
+BNR.fetchRates({ date: new Date('Oct 18, 2019'), invoice: true }).then((rates) => {
+    console.log(rates) // { -> Returns exchange rates for Oct 17 instead of Oct 18.
+    // EUR: { rate: 4.7550, multiplier: 1 },
+    // USD: { rate: 4.2719, multiplier: 1, },
     // ...
     //}
 });
