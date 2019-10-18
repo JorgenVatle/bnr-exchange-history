@@ -31,7 +31,7 @@ export default new class BNRExchangeHistory {
     /**
      * Fetch rates for the given date.
      */
-    public async getRates(date = new Date()) {
+    public async getRates({ date = new Date(), invoice = false }) {
         let moment = Moment(date);
         let year = await this.getYear(moment.toDate());
 
