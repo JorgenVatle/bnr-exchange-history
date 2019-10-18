@@ -1,4 +1,4 @@
-# BNR.ro Exchange Rates
+# Historical BNR.ro Exchange Rates for Node.js
 Easily grab exchange rates from [bnr.ro](https://bnr.ro). (Supports history lookups for years 2005 - present).
 
 While this package is very similar to [node-bnr](https://github.com/Bloggify/node-bnr) and similar exchange rate
