@@ -45,8 +45,8 @@ BNR.fetchRates({ date: new Date('Jan 1, 2019') }).then((rates) => {
 });
 
 // Fetch exchange rates for an invoicing date. 
-// Especially useful as invoices should include exchange rates for the previous
-// day when issuing invoices in currencies other than RON.
+// Especially useful for invoices that should include exchange rates for 
+// the previous banking day when issuing invoices in currencies other than RON.
 BNR.fetchRates({ date: new Date('Oct 18, 2019'), invoice: true }).then((rates) => {
     console.log(rates) // { -> Returns exchange rates for Oct 17 instead of Oct 18.
     // EUR: { rate: 4.7550, multiplier: 1 },
