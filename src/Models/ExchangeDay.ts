@@ -24,7 +24,7 @@ export default class ExchangeDay {
         this.data.Rate.forEach((rate) => {
             result[rate.$.currency] = {
                 name: rate.$.currency,
-                amount: parseFloat(rate._),
+                rate: parseFloat(rate._),
                 multiplier: parseInt(rate.$.multiplier || '1')
             }
         });

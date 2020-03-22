@@ -17,7 +17,7 @@ export interface ExchangeRate<Currency = CurrencyCode> {
      * Exchange rate of the current currency to RON.
      * E.g. USD = 4.1782
      */
-    amount: number;
+    rate: number;
 
     /**
      * Currency code of the selected currency.
