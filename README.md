@@ -27,7 +27,7 @@ const BNR = require('bnr-exchange-history').default;
 ## Usage
 ```typescript
 // Exchange rates for today.
-BNR.fetchRates().then((rates) => {
+BNR.getRates().then((rates) => {
     console.log(rates) // { 
     // EUR: { rate: 4.7537, multiplier: 1 },
     // USD: { rate: 4.3082, multiplier: 1, },
@@ -36,7 +36,7 @@ BNR.fetchRates().then((rates) => {
 });
 
 // Exchange rates for January 1st, 2019
-BNR.fetchRates({ date: new Date('Jan 1, 2019') }).then((rates) => {
+BNR.getRates({ date: new Date('Jan 1, 2019') }).then((rates) => {
     console.log(rates) // { 
     // EUR: { rate: 4.6639, multiplier: 1 },
     // USD: { rate: 4.0736, multiplier: 1, },
@@ -45,9 +45,9 @@ BNR.fetchRates({ date: new Date('Jan 1, 2019') }).then((rates) => {
 });
 
 // Fetch exchange rates for an invoicing date. 
-// Especially useful as invoices should include exchange rates for the previous
-// day when issuing invoices in currencies other than RON.
-BNR.fetchRates({ date: new Date('Oct 18, 2019'), invoice: true }).then((rates) => {
+// Especially useful for invoices that should include exchange rates for 
+// the previous banking day when issuing invoices in currencies other than RON.
+BNR.getRates({ date: new Date('Oct 18, 2019'), invoice: true }).then((rates) => {
     console.log(rates) // { -> Returns exchange rates for Oct 17 instead of Oct 18.
     // EUR: { rate: 4.7550, multiplier: 1 },
     // USD: { rate: 4.2719, multiplier: 1, },
