@@ -39,7 +39,7 @@ export default new class BNRExchangeHistory {
             moment.subtract(i, 'days');
             const day = year.getDay(moment.toDate());
 
-            if (invoice && moment.toDate().toDateString() === date.toDateString()) {
+            if (invoice && moment.isSame(date, 'day')) {
                 continue;
             }
 
