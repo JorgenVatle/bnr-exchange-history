@@ -1,7 +1,19 @@
+import Axios from 'axios';
+import { parseStringPromise as ParseXML } from 'xml2js';
 import ExchangeYearDocument from '../Interfaces/ExchangeYearDocument';
 import ExchangeDay from './ExchangeDay';
 
+const ApiClient = Axios.create({
+    baseURL: 'https://www.bnr.ro/files/xml/years/',
+});
+
 export default class ExchangeYear {
+    
+    public static fromDate(date: Date) {
+        return ApiClient.get(`nbrfxrates${date.getFullYear()}.xml`).then(async (response) => {
+            return new this(await ParseXML(response.data));
+        });
+    }
 
     /**
      * Exchange document.
