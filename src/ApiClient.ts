@@ -1,4 +1,4 @@
-import Axios from 'axios/index';
+import Axios from 'axios';
 import { parseStringPromise as ParseXML } from 'xml2js';
 import { InvalidBNRResponse, XMLParsingError } from './Errors/BNRError';
 import ExchangeYearDocument from './Interfaces/ExchangeYearDocument';
