@@ -6,7 +6,7 @@
   "types": "dist/BNRExchangeHistory.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup ./src/index.ts --dts --sourcemap",
+    "build": "tsup ./src/index.ts --format cjs,esm --dts --sourcemap",
     "lint": "tsc",
     "prepack": "npm run lint && npm run build",
     "postpublish": "git push && git push --tags"
