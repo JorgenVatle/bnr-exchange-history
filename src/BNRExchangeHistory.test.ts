@@ -68,7 +68,7 @@ describe('BNRExchangeHistory', () => {
     
     it('will catch and wrap exceptions during XML parsing', async () => {
         // This appears to cause an XML parsing exception.
-        const malformedDate = Moment('Feb 3, 2023 - 19:00').utcOffset(120);
+        const malformedDate = getDate('NaN');
         const request = BNRExchangeHistory.getRates({ date: malformedDate.toDate() });
         
         await expect(request).rejects.toBeInstanceOf(BNRError);
