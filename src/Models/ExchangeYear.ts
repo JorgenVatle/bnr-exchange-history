@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import { parseStringPromise as ParseXML } from 'xml2js';
-import { BNRError, XMLParsingError } from '../Errors/BNRError';
+import { XMLParsingError } from '../Errors/BNRError';
 import ExchangeYearDocument from '../Interfaces/ExchangeYearDocument';
 import ExchangeDay from './ExchangeDay';
 
