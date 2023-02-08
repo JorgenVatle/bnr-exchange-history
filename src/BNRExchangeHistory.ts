@@ -13,7 +13,7 @@ class BNRExchangeHistory {
         let exchangeYear = await ExchangeYear.fromDate(moment.toDate());
         const maxDaysInPast = 25;
     
-        for (let index = 0; index < maxDaysInPast; index++) {
+        for (let subtractedDays = 0; subtractedDays < maxDaysInPast; subtractedDays++) {
             moment.subtract(1, 'days');
             const exchangeDay = exchangeYear.getDay(moment.toDate());
         
