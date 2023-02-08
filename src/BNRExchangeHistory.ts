@@ -1,10 +1,8 @@
 import Axios from 'axios';
 import Moment from 'moment';
 import { parseStringPromise as ParseXML } from 'xml2js';
+import { BNRError } from './Errors/BNRError';
 import ExchangeYear from './Models/ExchangeYear';
-
-class BNRError extends Error {
-}
 
 const API = Axios.create({
     baseURL: 'https://www.bnr.ro/files/xml/years/',
