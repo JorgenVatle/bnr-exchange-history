@@ -14,7 +14,7 @@ class BNRExchangeHistory {
         const maxDaysInPast = 25;
     
         for (let index = 0; index < maxDaysInPast; index++) {
-            moment.subtract(index, 'days');
+            moment.subtract(1, 'days');
             const exchangeDay = exchangeYear.getDay(moment.toDate());
         
             if (invoice && moment.isSame(date, 'day')) {
