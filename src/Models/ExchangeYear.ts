@@ -43,7 +43,8 @@ export default class ExchangeYear {
         
         if (!contentType.includes('text/xml')) {
             throw new InvalidBNRResponse(
-                `Received an invalid response from bnr.ro wile fetching exchange rates for year: ${year}`,
+                `Received an invalid response from bnr.ro wile fetching exchange rates for year: ${year} `
+                + `This likely means there isn\'t any exchange data for the provided year.`,
                 {
                     response,
                     date,
