@@ -22,7 +22,7 @@ class BNRExchangeHistory {
             }
         
             if (exchangeDay) {
-                return exchangeDay.object;
+                return exchangeDay.parsedData;
             }
         
             if (!exchangeYear.sameYear(moment.toDate())) {

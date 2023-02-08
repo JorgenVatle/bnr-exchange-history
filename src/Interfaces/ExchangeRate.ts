@@ -6,7 +6,7 @@ export type CurrencyCode = 'RON' | 'AED' | 'AUD' | 'BGN' | 'BRL' | 'CAD' | 'CHF'
 /**
  * Exchange rate object.
  */
-export interface ExchangeRate<Currency = CurrencyCode> {
+export interface ExchangeRate<Currency extends CurrencyCode = CurrencyCode> {
     /**
      * Currency multiplier. Used for currencies like Japanese Yen that don't support decimals.
      * E.g. USD = 1, JPY = 100
@@ -28,6 +28,6 @@ export interface ExchangeRate<Currency = CurrencyCode> {
 /**
  * Exchange rate object.
  */
-export type ExchangeInterface = {
+export type ExchangeRates = {
     [Key in CurrencyCode]: ExchangeRate<Key>;
 }

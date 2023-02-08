@@ -1,42 +1,43 @@
 import { ExchangeCube } from '../Interfaces/ExchangeYearDocument';
-import { CurrencyCode, ExchangeInterface, ExchangeRate } from '../Interfaces/ExchangeInterface';
+import { CurrencyCode, ExchangeRate, ExchangeRates } from '../Interfaces/ExchangeRate';
 
 export default class ExchangeDay {
 
     /**
      * Exchange Day data.
      */
-    protected readonly data: ExchangeCube;
+    protected readonly rawData: ExchangeCube;
 
     /**
      * Exchange Day constructor.
      */
     public constructor(data: ExchangeCube) {
-        this.data = data;
+        this.rawData = data;
     }
 
     /**
      * Formatted exchange object.
      */
-    public get object(): ExchangeInterface {
-        const result: Partial<{ [Key in CurrencyCode]: ExchangeRate }> = {};
-
-        this.data.Rate.forEach((rate) => {
-            result[rate.$.currency] = {
-                name: rate.$.currency,
-                rate: parseFloat(rate._),
-                multiplier: parseInt(rate.$.multiplier || '1')
-            }
+    public get parsedData(): ExchangeRates {
+        const list = this.rawData.Rate.map((entry): [CurrencyCode, ExchangeRate] => {
+            const rate: ExchangeRate = {
+                name: entry.$.currency,
+                rate: parseFloat(entry._),
+                multiplier: parseInt(entry.$.multiplier || '1')
+            };
+            
+            
+            return [rate.name, rate];
         });
-
-        return <ExchangeInterface>result;
+        
+        return Object.fromEntries(list) as ExchangeRates;
     }
 
     /**
      * Exchange date.
      */
     public get date(): Date {
-        return new Date(this.data.$.date);
+        return new Date(this.rawData.$.date);
     }
 
 }

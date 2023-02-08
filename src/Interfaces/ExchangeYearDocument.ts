@@ -1,4 +1,4 @@
-import { CurrencyCode } from './ExchangeInterface';
+import { CurrencyCode } from './ExchangeRate';
 
 export interface ExchangeCube {
     $: {
