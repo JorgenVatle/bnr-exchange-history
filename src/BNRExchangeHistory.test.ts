@@ -23,7 +23,7 @@ const knownRates = {
     },
     Sunday_Feb_5_2023: {
         date: getDate('05 Feb 2023 19:00:00 +0200'),
-        USD: 4.4823,
+        USD: null, // No rates on a Sunday :)
     },
     Tuesday_Feb_7_2023: {
         date: getDate('07 Feb 2023 19:00:00 +0200'),
