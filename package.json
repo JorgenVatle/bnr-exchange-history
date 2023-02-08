@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup ./src/index.ts --format cjs,esm --dts --sourcemap",
     "lint": "tsc",
+    "clean": "shx rm -rf ./dist",
     "prepack": "npm run lint && npm run build",
     "postpublish": "git push && git push --tags"
   },
@@ -35,6 +36,7 @@
   "homepage": "https://github.com/JorgenVatle/bnr-exchange-history#readme",
   "devDependencies": {
     "@types/xml2js": "^0.4.5",
+    "shx": "^0.3.4",
     "tsup": "^6.6.0",
     "typescript": "^4.9.5"
   },
