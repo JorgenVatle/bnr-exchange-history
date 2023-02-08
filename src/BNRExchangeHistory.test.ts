@@ -13,6 +13,10 @@ function formatDate(inputDate: Moment.Moment | Date) {
 }
 
 const knownRates = {
+    Friday_Dec_30_2022: {
+        date: getDate('30 Dec 2022 19:00:00 +0200'),
+        USD: 4.6346,
+    },
     Friday_Feb_3_2023: {
         date: getDate('03 Feb 2023 19:00:00 +0200'),
         USD: 4.4823,
@@ -68,6 +72,16 @@ describe('BNRExchangeHistory', () => {
         const request = BNRExchangeHistory.getRates({ date: malformedDate.toDate() });
         
         await expect(request).rejects.toBeInstanceOf(BNRError);
+    });
+    
+    it('will fetch exchange rates from the previous year if necessary', async () => {
+        const date = getDate('01 Jan 2023 19:00:00 +0200');
+        const expected = knownRates.Friday_Dec_30_2022;
+        
+        const rates = await BNRExchangeHistory.getRates({ date: date.toDate(), invoice: false });
+    
+        expect(formatDate(rates.USD.date)).toBe(formatDate(expected.date));
+        expect(rates.USD.rate).toBe(expected.USD);
     })
     
 })
