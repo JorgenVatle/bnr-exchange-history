@@ -34,6 +34,7 @@
   "homepage": "https://github.com/JorgenVatle/bnr-exchange-history#readme",
   "devDependencies": {
     "@types/xml2js": "^0.4.5",
+    "tsup": "^6.6.0",
     "typescript": "^4.9.5"
   },
   "dependencies": {
