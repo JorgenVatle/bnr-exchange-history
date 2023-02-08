@@ -1,13 +1,14 @@
 import Axios from 'axios/index';
 import { parseStringPromise as ParseXML } from 'xml2js';
 import { InvalidBNRResponse, XMLParsingError } from './Errors/BNRError';
+import ExchangeYearDocument from './Interfaces/ExchangeYearDocument';
 
 export default new class ApiClient {
     protected readonly client = Axios.create({
         baseURL: 'https://www.bnr.ro/files/xml/years/',
     });
     
-    public async getXMLForYear(date: Date) {
+    public async getXMLForYear(date: Date): Promise<ExchangeYearDocument> {
         const year = date.getFullYear();
         const response = await this.client.get(`nbrfxrates${year}.xml`);
     
