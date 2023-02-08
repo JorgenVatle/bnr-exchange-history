@@ -1,5 +1,6 @@
 import Moment from 'moment';
 import BNRExchangeHistory from './BNRExchangeHistory';
+import { BNRError } from './Errors/BNRError';
 
 function getDate(date: string) {
     return Moment(date).utcOffset(120);
@@ -59,6 +60,14 @@ describe('BNRExchangeHistory', () => {
         
         expect(formatDate(rates.USD.date)).toBe(formatDate(expected.date));
         expect(rates.USD.rate).toBe(expected.USD);
+    });
+    
+    it('will catch and wrap exceptions during XML parsing', async () => {
+        // This appears to cause an XML parsing exception.
+        const malformedDate = Moment('Feb 3, 2023 - 19:00').utcOffset(120);
+        const request = BNRExchangeHistory.getRates({ date: malformedDate.toDate() });
+        
+        await expect(request).rejects.toBeInstanceOf(BNRError);
     })
     
 })
