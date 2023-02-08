@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup ./src/index.ts --dts --sourcemap",
-    "lint": "tsc --noEmit",
-    "prepack": "npm run build",
+    "lint": "tsc",
+    "prepack": "npm run lint && npm run build",
     "postpublish": "git push && git push --tags"
   },
   "engines": {
