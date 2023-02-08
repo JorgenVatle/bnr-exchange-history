@@ -16,7 +16,9 @@ export default class ExchangeYear {
         
         const parsedXml = await ParseXML(response.data).catch((error: Error) => {
             throw new XMLParsingError(`Unable to parse response from BNR!`, error, {
-                url: response.config.url,
+                path: response.config.url,
+                baseUrl: response.config.baseURL,
+                status: `${response.status} ${response.statusText}`,
                 response: response.data,
                 requestedDate: date,
             })
