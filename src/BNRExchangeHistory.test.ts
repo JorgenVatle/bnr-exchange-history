@@ -82,6 +82,22 @@ describe('BNRExchangeHistory', () => {
     
         expect(formatDate(rates.USD.date)).toBe(formatDate(expected.date));
         expect(rates.USD.rate).toBe(expected.USD);
+    });
+    
+    describe('when no exchange history available for the provided year', () => {
+        
+        it('will defer to the first available data from the previous year', async () => {
+            const nextYear = new Date().getFullYear() + 1;
+            const date = getDate(`01 Jan ${nextYear} 19:00:00 +0200`);
+            
+            const rates = await BNRExchangeHistory.getRates({
+                date: date.toDate(),
+                invoice: false,
+            });
+            
+            expect(rates.USD.date.getFullYear()).toBeLessThan(nextYear);
+        })
+        
     })
     
 })
