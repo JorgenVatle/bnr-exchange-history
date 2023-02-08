@@ -39,7 +39,10 @@ describe('BNRExchangeHistory', () => {
     it('can fetch exchange rates for non-banking days', async () => {
         const { date, USD } = knownRates.Sunday_Feb_5_2023;
         
-        const rates = await BNRExchangeHistory.getRates({ date });
+        const rates = await BNRExchangeHistory.getRates({
+            date,
+            invoice: false,
+        });
         
         expect(rates.USD.rate).toBe(USD);
     })
