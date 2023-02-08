@@ -1,16 +1,21 @@
+import Moment from 'moment';
 import BNRExchangeHistory from './BNRExchangeHistory';
+
+function getDate(date: string) {
+    return Moment(date).utcOffset(120);
+}
 
 const knownRates = {
     Friday_Feb_3_2023: {
-        date: new Date(1675448485315),
+        date: getDate('03 Feb 2023 19:00:00 +0200'),
         USD: 4.4823,
     },
     Sunday_Feb_5_2023: {
-        date: new Date(1675620351166),
+        date: getDate('05 Feb 2023 19:00:00 +0200'),
         USD: 4.4823,
     },
     Tuesday_Feb_7_2023: {
-        date: new Date(1675794357453),
+        date: getDate('07 Feb 2023 19:00:00 +0200'),
         USD: 4.5747,
     }
 }
@@ -29,7 +34,7 @@ describe('BNRExchangeHistory', () => {
         const { date, USD } = knownRates.Tuesday_Feb_7_2023;
         
         const rates = await BNRExchangeHistory.getRates({
-            date,
+            date: date.toDate(),
             invoice: false,
         });
         
@@ -40,7 +45,7 @@ describe('BNRExchangeHistory', () => {
         const { date, USD } = knownRates.Sunday_Feb_5_2023;
         
         const rates = await BNRExchangeHistory.getRates({
-            date,
+            date: date.toDate(),
             invoice: false,
         });
         
