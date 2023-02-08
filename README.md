@@ -9,7 +9,7 @@ other than 'today'. This package aims to resolve that, allowing lookups for any 
 [![Downloads](https://img.shields.io/npm/dt/bnr-exchange-history.svg)](https://www.npmjs.com/package/bnr-exchange-history)
 [![Version](https://img.shields.io/npm/v/bnr-exchange-history.svg)](https://www.npmjs.com/package/bnr-exchange-history)
 [![Node Version](https://img.shields.io/node/v/bnr-exchange-history.svg)](https://www.npmjs.com/package/bnr-exchange-history)
-[![Test](https://github.com/JorgenVatle/bnr-exchange-history/actions/workflows/test.yml/badge.svg)](https://github.com/JorgenVatle/bnr-exchange-history/actions/workflows/test.yml)
+[![Test](https://github.com/JorgenVatle/bnr-exchange-history/actions/workflows/tests.yml/badge.svg)](https://github.com/JorgenVatle/bnr-exchange-history/actions/workflows/test.yml)
 
 ## Installation
 ```bash
