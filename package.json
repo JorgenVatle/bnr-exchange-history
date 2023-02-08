@@ -13,7 +13,7 @@
     "postpublish": "git push && git push --tags"
   },
   "engines": {
-    "node": ">=6.4"
+    "node": ">=12"
   },
   "repository": {
     "type": "git",
