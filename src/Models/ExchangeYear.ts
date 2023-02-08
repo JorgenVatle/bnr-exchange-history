@@ -36,7 +36,7 @@ export default class ExchangeYear {
         return this.days[0].date.getFullYear();
     }
     
-    public static async fromDate(date: Date) {
+    public static async fromDate(date: Date): Promise<ExchangeYear> {
         const year = date.getFullYear();
         const response = await ApiClient.get(`nbrfxrates${year}.xml`);
         const contentType = response.headers['content-type'];
