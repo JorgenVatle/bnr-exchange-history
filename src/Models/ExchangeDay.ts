@@ -23,7 +23,8 @@ export default class ExchangeDay {
             const rate: ExchangeRate = {
                 name: entry.$.currency,
                 rate: parseFloat(entry._),
-                multiplier: parseInt(entry.$.multiplier || '1')
+                multiplier: parseInt(entry.$.multiplier || '1'),
+                date: this.date,
             };
             
             

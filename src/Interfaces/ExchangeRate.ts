@@ -23,6 +23,12 @@ export interface ExchangeRate<Currency extends CurrencyCode = CurrencyCode> {
      * Currency code of the selected currency.
      */
     name: Currency;
+    
+    
+    /**
+     * The date this exchange rate pertains to.
+     */
+    date: Date,
 }
 
 /**
