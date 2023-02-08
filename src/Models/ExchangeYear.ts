@@ -10,19 +10,19 @@ const ApiClient = Axios.create({
 
 export default class ExchangeYear {
     
-    public static fromDate(date: Date) {
+    public static async fromDate(date: Date) {
         const year = date.getFullYear();
-        return ApiClient.get(`nbrfxrates${year}.xml`).then(async (response) => {
-            const parsedXml = await ParseXML(response.data).catch((error: Error) => {
-                throw new XMLParsingError(`Unable to parse response from BNR!`, error, {
-                    url: response.config.url,
-                    response: response.data,
-                    requestedDate: date,
-                })
-            });
-            
-            return new this(parsedXml);
+        const response = await ApiClient.get(`nbrfxrates${year}.xml`);
+        
+        const parsedXml = await ParseXML(response.data).catch((error: Error) => {
+            throw new XMLParsingError(`Unable to parse response from BNR!`, error, {
+                url: response.config.url,
+                response: response.data,
+                requestedDate: date,
+            })
         });
+        
+        return new this(parsedXml);
     }
 
     /**
