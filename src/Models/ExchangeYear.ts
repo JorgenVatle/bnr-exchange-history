@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import { parseStringPromise as ParseXML } from 'xml2js';
-import { XMLParsingError } from '../Errors/BNRError';
+import { BNRError, XMLParsingError } from '../Errors/BNRError';
 import ExchangeYearDocument from '../Interfaces/ExchangeYearDocument';
 import ExchangeDay from './ExchangeDay';
 
@@ -13,6 +13,11 @@ export default class ExchangeYear {
     public static async fromDate(date: Date) {
         const year = date.getFullYear();
         const response = await ApiClient.get(`nbrfxrates${year}.xml`);
+        const contentType = response.headers['content-type'];
+        
+        if (!contentType.includes('text/xml')) {
+            throw new BNRError(`Received an invalid response from bnr.ro wile fetching exchange rates for year: ${year}`);
+        }
         
         const parsedXml = await ParseXML(response.data).catch((error: Error) => {
             throw new XMLParsingError(`Unable to parse response from BNR!`, error, {
@@ -21,6 +26,7 @@ export default class ExchangeYear {
                 status: `${response.status} ${response.statusText}`,
                 response: response.data,
                 requestedDate: date,
+                contentType,
             })
         });
         
