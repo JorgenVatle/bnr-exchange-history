@@ -5,6 +5,12 @@ function getDate(date: string) {
     return Moment(date).utcOffset(120);
 }
 
+function formatDate(inputDate: Moment.Moment | Date) {
+    const date = Moment(inputDate);
+    
+    return date.format('YYYY-MM-DD');
+}
+
 const knownRates = {
     Friday_Feb_3_2023: {
         date: getDate('03 Feb 2023 19:00:00 +0200'),
@@ -37,19 +43,22 @@ describe('BNRExchangeHistory', () => {
             date: date.toDate(),
             invoice: false,
         });
-        
+    
+        expect(formatDate(rates.USD.date)).toBe('2023-02-07');
         expect(rates.USD.rate).toBe(USD);
     })
     
     it('can fetch exchange rates for non-banking days', async () => {
         const { date, USD } = knownRates.Sunday_Feb_5_2023;
+        const expected = knownRates.Friday_Feb_3_2023;
         
         const rates = await BNRExchangeHistory.getRates({
             date: date.toDate(),
             invoice: false,
         });
         
-        expect(rates.USD.rate).toBe(USD);
+        expect(formatDate(rates.USD.date)).toBe(formatDate(expected.date));
+        expect(rates.USD.rate).toBe(expected.USD);
     })
     
 })
