@@ -2,8 +2,8 @@
   "name": "bnr-exchange-history",
   "version": "3.0.0",
   "description": "A wrapper for bnr.ro's exchange rate pages. With support for yearly rates.",
-  "main": "dist/BNRExchangeHistory.js",
-  "types": "dist/BNRExchangeHistory.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsup ./src/index.ts --format cjs,esm --dts --sourcemap",
