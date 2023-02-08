@@ -6,11 +6,11 @@
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "tsup ./src/index.ts --format cjs,esm --dts --sourcemap",
     "lint": "tsc",
     "clean": "shx rm -rf ./dist",
-    "prepack": "npm run lint && npm run build",
+    "prepack": "npm run lint && npm run test && npm run build",
     "postpublish": "git push && git push --tags"
   },
   "engines": {
