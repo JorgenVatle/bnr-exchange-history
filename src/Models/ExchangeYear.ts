@@ -2,7 +2,6 @@ import ApiClient from '../ApiClient';
 import ExchangeYearDocument from '../Interfaces/ExchangeYearDocument';
 import ExchangeDay from './ExchangeDay';
 
-
 export default class ExchangeYear {
     
     /**

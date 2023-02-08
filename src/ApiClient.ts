@@ -4,7 +4,7 @@ import { InvalidBNRResponse, XMLParsingError } from './Errors/BNRError';
 import ExchangeYearDocument from './Interfaces/ExchangeYearDocument';
 import { ResponseCache } from './ResponseCache';
 
-export default new class ApiClient {
+class ApiClient {
     protected readonly client = Axios.create({
         baseURL: 'https://www.bnr.ro/files/xml/years/',
     });
@@ -46,3 +46,4 @@ export default new class ApiClient {
     }
 }
 
+export default new ApiClient();
