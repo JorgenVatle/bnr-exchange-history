@@ -18,7 +18,7 @@ export default class ExchangeDay {
     /**
      * Formatted exchange object.
      */
-    public get rates(): ExchangeRates {
+    public getRates(): ExchangeRates {
         const list = this.rawData.Rate.map((entry): [CurrencyCode, ExchangeRate] => {
             const rate: ExchangeRate = {
                 name: entry.$.currency,
