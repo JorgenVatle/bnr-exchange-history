@@ -3,6 +3,8 @@
     "target": "es2015",
     "module": "commonjs",
     "strict": true,
+    "sourceMap": true,
+    "declaration": true,
     "alwaysStrict": true,
     "skipLibCheck": true,
     "esModuleInterop": true
