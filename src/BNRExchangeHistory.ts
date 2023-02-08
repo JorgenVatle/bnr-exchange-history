@@ -15,14 +15,14 @@ class BNRExchangeHistory {
     
         for (let index = 0; index < maxDaysInPast; index++) {
             moment.subtract(index, 'days');
-            const day = exchangeYear.getDay(moment.toDate());
+            const exchangeDay = exchangeYear.getDay(moment.toDate());
         
             if (invoice && moment.isSame(date, 'day')) {
                 continue;
             }
         
-            if (day) {
-                return day.object;
+            if (exchangeDay) {
+                return exchangeDay.object;
             }
         
             if (!exchangeYear.sameYear(moment.toDate())) {
