@@ -105,11 +105,11 @@ describe('BNRExchangeHistory', () => {
         });
         
         describe('current/past dates', () => {
+            const currentYear = new Date().getFullYear();
+            
             // Simulating a response for an exchange year that doesn't exist yet.
             // This necessary to deal with an edge-case during new-year where there aren't any exchange rates
             // for the current year.
-            const currentYear = new Date().getFullYear();
-            
             beforeEach(async () => {
                 const exception = await ApiClient.getXMLForYear(currentYear + 1).catch((error) => error);
                 jest.spyOn(ExchangeYear, 'for').mockRejectedValueOnce(exception);
@@ -128,7 +128,7 @@ describe('BNRExchangeHistory', () => {
     
             it('throws if the date is too far into the year to be traversed', async () => {
                 const date = new Date(`Jan 10, ${currentYear}`)
-                
+    
                 const rates = BNRExchangeHistory.getRates({
                     date,
                     invoice: false,
