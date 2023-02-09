@@ -1,6 +1,8 @@
 import Moment from 'moment';
+import ApiClient from './ApiClient';
 import BNRExchangeHistory from './BNRExchangeHistory';
 import { BNRError } from './Errors/BNRError';
+import ExchangeYear from './Models/ExchangeYear';
 
 function getDate(date: string) {
     return Moment(date).utcOffset(120);
@@ -88,7 +90,7 @@ describe('BNRExchangeHistory', () => {
         
         describe('if the date is in the future', () => {
             
-            it('will throw an exception', async () => {
+            it('throws an exception', async () => {
                 const nextYear = new Date().getFullYear() + 1;
                 const date = getDate(`01 Jan ${nextYear} 19:00:00 +0200`);
     
@@ -100,8 +102,29 @@ describe('BNRExchangeHistory', () => {
                 await expect(request).rejects.toBeInstanceOf(BNRError);
             })
             
-        })
+        });
         
+        describe('if the date is today', () => {
+            
+            it('uses data from the previous year', async function () {
+                const currentYear = new Date().getFullYear();
+                const date = new Date(`Jan 1, ${currentYear}`);
+                
+                // Simulating a response for an exchange year that doesn't exist yet.
+                // This necessary to deal with an edge-case during new-year where there aren't any exchange rates
+                // for the current year.
+                const exception = await ApiClient.getXMLForYear(currentYear + 1).catch((error) => error);
+                jest.spyOn(ExchangeYear, 'for').mockRejectedValueOnce(exception);
+    
+                const rates = await BNRExchangeHistory.getRates({
+                    date,
+                    invoice: false,
+                });
+    
+                expect(rates.USD.date.getFullYear()).toBe(currentYear - 1);
+            })
+            
+        })
         
     })
     
