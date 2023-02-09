@@ -10,9 +10,20 @@ class BNRExchangeHistory {
             invoice = false,
         },
     ) {
-        const moment = Moment(date);
-        let exchangeYear = await ExchangeYear.for({ year: moment.year() });
+        const year = date.getFullYear();
         const maxDaysInPast = 25;
+        
+        let exchangeYear = await ExchangeYear.for({ year }).catch((error) => {
+            if (!(error instanceof InvalidBNRResponse)) {
+                throw error;
+            }
+            
+            if (new Date().getFullYear() !== year) {
+                throw error;
+            }
+            
+            return ExchangeYear.for({ year: year - 1 });
+        });
     
         for (let daysToSubtract = 0; daysToSubtract < maxDaysInPast; daysToSubtract++) {
             const moment = Moment(date).subtract(daysToSubtract, 'days');
