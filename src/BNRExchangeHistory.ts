@@ -1,8 +1,9 @@
 import Moment from 'moment';
-import { BNRError } from './Errors/BNRError';
+import { BNRError, InvalidBNRResponse } from './Errors/BNRError';
 import ExchangeYear from './Models/ExchangeYear';
 
 class BNRExchangeHistory {
+    
     public async getRates(
         {
             date = new Date(),
@@ -10,7 +11,7 @@ class BNRExchangeHistory {
         },
     ) {
         const moment = Moment(date);
-        let exchangeYear = await ExchangeYear.fromDate(moment.toDate());
+        let exchangeYear = await ExchangeYear.for({ year: moment.year() });
         const maxDaysInPast = 25;
     
         for (let daysToSubtract = 0; daysToSubtract < maxDaysInPast; daysToSubtract++) {
@@ -26,7 +27,7 @@ class BNRExchangeHistory {
             }
         
             if (!exchangeYear.sameYear(moment.toDate())) {
-                exchangeYear = await ExchangeYear.fromDate(moment.toDate());
+                exchangeYear = await ExchangeYear.for({ year: moment.year() });
             }
         }
     

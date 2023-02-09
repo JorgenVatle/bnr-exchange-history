@@ -32,3 +32,4 @@ export default interface ExchangeYearDocument {
         }>
     }
 }
+export type Year = number;

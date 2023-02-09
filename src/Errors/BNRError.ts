@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { Year } from '../Interfaces/ExchangeYearDocument';
 
 export class BNRError extends Error {
     public readonly metadata?: ReturnType<typeof parseMetadata>;
@@ -23,16 +24,16 @@ export class BNRError extends Error {
 interface RequestMetadata {
     response: AxiosResponse;
     cause?: Error;
-    date: Date;
+    year: Year;
 }
 
-function parseMetadata({ response, date }: RequestMetadata) {
+function parseMetadata({ response, year }: RequestMetadata) {
     return {
         path: response.config.url,
         baseUrl: response.config.baseURL,
         status: `${response.status} ${response.statusText}`,
         response: response.data,
-        requestedDate: date,
+        requestedYear: year,
         contentType: response.headers['content-type'],
     };
 }

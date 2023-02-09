@@ -1,5 +1,5 @@
 import ApiClient from '../ApiClient';
-import ExchangeYearDocument from '../Interfaces/ExchangeYearDocument';
+import ExchangeYearDocument, { Year } from '../Interfaces/ExchangeYearDocument';
 import ExchangeDay from './ExchangeDay';
 
 export default class ExchangeYear {
@@ -30,8 +30,8 @@ export default class ExchangeYear {
         return this.days[0].date.getFullYear();
     }
     
-    public static async fromDate(date: Date): Promise<ExchangeYear> {
-        return new this(await ApiClient.getXMLForYear(date));
+    public static async for(date: { year: Year }): Promise<ExchangeYear> {
+        return new this(await ApiClient.getXMLForYear(date.year));
     }
     
     /**

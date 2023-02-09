@@ -1,4 +1,4 @@
-import ExchangeYearDocument from './Interfaces/ExchangeYearDocument';
+import ExchangeYearDocument, { Year } from './Interfaces/ExchangeYearDocument';
 
 interface CachedDocument {
     document: ExchangeYearDocument,
@@ -7,10 +7,10 @@ interface CachedDocument {
 
 export class ResponseCache {
     
-    protected readonly cache = new Map<string, CachedDocument>();
+    protected readonly cache = new Map<Year, CachedDocument>();
     
-    public set(date: Date, rates: ExchangeYearDocument): ExchangeYearDocument {
-        this.cache.set(this.cacheKey(date), {
+    public set(year: Year, rates: ExchangeYearDocument): ExchangeYearDocument {
+        this.cache.set(year, {
             document: rates,
             lastUpdated: Date.now(),
         });
@@ -22,18 +22,16 @@ export class ResponseCache {
      * It's important that we check to make sure that we don't cache responses for the current year, as these
      * exchange rates change every day.
      */
-    public has(date: Date): boolean {
-        const key = this.cacheKey(date);
-        
-        if (!this.cache.has(key)) {
+    public has(year: Year): boolean {
+        if (!this.cache.has(year)) {
             return false;
         }
         
-        if (date.getFullYear() !== new Date().getFullYear()) {
+        if (year !== new Date().getFullYear()) {
             return true;
         }
         
-        const { lastUpdated } = this.cache.get(key) || {};
+        const { lastUpdated } = this.cache.get(year) || {};
         
         if (!lastUpdated) {
             return false;
@@ -46,8 +44,8 @@ export class ResponseCache {
         return true;
     }
     
-    public get(date: Date): ExchangeYearDocument {
-        const response = this.cache.get(this.cacheKey(date));
+    public get(year: Year): ExchangeYearDocument {
+        const response = this.cache.get(year);
         
         if (!response) {
             throw new Error('Unable to find response in cache!');
@@ -56,7 +54,7 @@ export class ResponseCache {
         return response.document;
     }
     
-    protected cacheKey(date: Date) {
-        return date.getFullYear().toString();
+    protected cacheKey(year: Year) {
+        return year.toString();
     }
 }

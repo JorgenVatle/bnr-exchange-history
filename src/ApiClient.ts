@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { parseStringPromise as ParseXML } from 'xml2js';
 import { InvalidBNRResponse, XMLParsingError } from './Errors/BNRError';
-import ExchangeYearDocument from './Interfaces/ExchangeYearDocument';
+import ExchangeYearDocument, { Year } from './Interfaces/ExchangeYearDocument';
 import { ResponseCache } from './ResponseCache';
 
 class ApiClient {
@@ -11,16 +11,15 @@ class ApiClient {
     
     protected readonly cache = new ResponseCache();
     
-    public async getXMLForYear(date: Date): Promise<ExchangeYearDocument> {
-        if (this.cache.has(date)) {
-            return this.cache.get(date);
+    public async getXMLForYear(year: Year): Promise<ExchangeYearDocument> {
+        if (this.cache.has(year)) {
+            return this.cache.get(year);
         }
         
-        return this.cache.set(date, await this.fetchRates(date));
+        return this.cache.set(year, await this.fetchRates(year));
     }
     
-    protected async fetchRates(date: Date): Promise<ExchangeYearDocument> {
-        const year = date.getFullYear();
+    protected async fetchRates(year: Year): Promise<ExchangeYearDocument> {
         const response = await this.client.get(`nbrfxrates${year}.xml`);
         
         const contentType = response.headers['content-type'];
@@ -31,7 +30,7 @@ class ApiClient {
                 + `This likely means there isn\'t any exchange data for the provided year.`,
                 {
                     response,
-                    date,
+                    year,
                 },
             );
         }
@@ -40,7 +39,7 @@ class ApiClient {
             throw new XMLParsingError(`Unable to parse response from BNR!`, {
                 response,
                 cause,
-                date
+                year,
             });
         });
     }
