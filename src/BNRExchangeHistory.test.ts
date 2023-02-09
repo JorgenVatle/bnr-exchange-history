@@ -86,7 +86,7 @@ describe('BNRExchangeHistory', () => {
         expect(rates.USD.rate).toBe(expected.USD);
     });
     
-    describe('when no exchange history available for the provided year', () => {
+    describe('when no exchange history available for the year of the provided date', () => {
         
         describe('if the date is in the future', () => {
             
@@ -104,17 +104,19 @@ describe('BNRExchangeHistory', () => {
             
         });
         
-        describe('if the date is today', () => {
+        describe('current/past dates', () => {
+            // Simulating a response for an exchange year that doesn't exist yet.
+            // This necessary to deal with an edge-case during new-year where there aren't any exchange rates
+            // for the current year.
+            const currentYear = new Date().getFullYear();
             
-            it('uses data from the previous year', async function () {
-                const currentYear = new Date().getFullYear();
-                const date = new Date(`Jan 1, ${currentYear}`);
-                
-                // Simulating a response for an exchange year that doesn't exist yet.
-                // This necessary to deal with an edge-case during new-year where there aren't any exchange rates
-                // for the current year.
+            beforeEach(async () => {
                 const exception = await ApiClient.getXMLForYear(currentYear + 1).catch((error) => error);
                 jest.spyOn(ExchangeYear, 'for').mockRejectedValueOnce(exception);
+            })
+            
+            it('defers to the previous year during new year', async function () {
+                const date = new Date(`Jan 1, ${currentYear}`);
     
                 const rates = await BNRExchangeHistory.getRates({
                     date,
@@ -123,8 +125,19 @@ describe('BNRExchangeHistory', () => {
     
                 expect(rates.USD.date.getFullYear()).toBe(currentYear - 1);
             })
+    
+            it('throws if the date is too far into the year to be traversed', async () => {
+                const date = new Date(`Jan 10, ${currentYear}`)
+                
+                const rates = BNRExchangeHistory.getRates({
+                    date,
+                    invoice: false,
+                });
+        
+                await expect(rates).rejects.toBeInstanceOf(BNRError);
+            });
             
-        })
+        });
         
     })
     
