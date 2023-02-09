@@ -46,6 +46,10 @@ class BNRExchangeHistory {
             if (!date.isSame(Date.now(), 'year')) {
                 throw error;
             }
+            
+            if (date.get('dayOfYear') > 5) {
+                throw error;
+            }
         
             const lastYear = date.year() - 1;
         
