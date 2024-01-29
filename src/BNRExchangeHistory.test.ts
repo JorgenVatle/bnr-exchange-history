@@ -3,7 +3,7 @@ import ApiClient from './ApiClient';
 import BNRExchangeHistory from './BNRExchangeHistory';
 import { BNRError } from './Errors/BNRError';
 import ExchangeYear from './Models/ExchangeYear';
-import { expect, it, describe, beforeEach } from 'vitest';
+import { expect, it, describe, beforeEach, vi } from 'vitest';
 
 function getDate(date: string) {
     return Moment(date).utcOffset(120);
@@ -113,7 +113,7 @@ describe('BNRExchangeHistory', () => {
             // for the current year.
             beforeEach(async () => {
                 const exception = await ApiClient.getXMLForYear(currentYear + 1).catch((error) => error);
-                jest.spyOn(ExchangeYear, 'for').mockRejectedValueOnce(exception);
+                vi.spyOn(ExchangeYear, 'for').mockRejectedValueOnce(exception);
             })
             
             it('defers to the previous year during new year', async function () {
