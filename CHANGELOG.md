@@ -1,5 +1,11 @@
 # bnr-exchange-history
 
+## 4.1.6
+
+### Patch Changes
+
+- ed58810: Fix internal package publication workflow to address issues with the Changesets synchronization.
+
 ## 4.1.4
 
 ### Patch Changes
