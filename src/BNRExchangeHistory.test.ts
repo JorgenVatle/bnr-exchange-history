@@ -3,6 +3,7 @@ import ApiClient from './ApiClient';
 import BNRExchangeHistory from './BNRExchangeHistory';
 import { BNRError } from './Errors/BNRError';
 import ExchangeYear from './Models/ExchangeYear';
+import { expect, it, describe, beforeEach } from 'vitest';
 
 function getDate(date: string) {
     return Moment(date).utcOffset(120);
