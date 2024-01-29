@@ -16,7 +16,7 @@
     "build": "npm run clean && tsup",
     "lint": "tsc",
     "clean": "shx rm -rf ./dist",
-    "prepack": "npm run lint && npm run test && npm run build"
+    "publish": "npm run build && changeset publish"
   },
   "engines": {
     "node": ">=12"
