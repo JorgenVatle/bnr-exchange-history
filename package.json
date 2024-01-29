@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.mjs",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "tsup ./src/index.ts --format cjs,esm --dts --sourcemap",
