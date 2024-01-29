@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
-    "build": "tsup",
+    "build": "npm run clean && tsup",
     "lint": "tsc",
     "clean": "shx rm -rf ./dist",
     "prepack": "npm run lint && npm run test && npm run build",
