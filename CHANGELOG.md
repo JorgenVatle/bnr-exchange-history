@@ -1,5 +1,11 @@
 # bnr-exchange-history
 
+## 4.1.4
+
+### Patch Changes
+
+- e1b4523: Update axios, follow-redirects and xml2js to resolve dependabot alerts
+
 ## 4.1.3
 
 ### Patch Changes
