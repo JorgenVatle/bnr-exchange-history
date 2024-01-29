@@ -77,5 +77,3 @@ If all you need is to fetch exchange rates for the _current day_, you'll probabl
 
 ## License
 This repository is licensed under the ISC license.
-
-Copyright (c) 2019, Jørgen Vatle.
